@@ -1,0 +1,160 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main Page */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121826;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+/* Calculator Container */
+.calculator {
+  width: 100%;
+  max-width: 360px;
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Display */
+.display {
+  background: #0f172a;
+  min-height: 110px;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.previous-operand {
+  color: #94a3b8;
+  font-size: 15px;
+  min-height: 25px;
+}
+
+.current-operand {
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: 600;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Button Grid */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Common Button Styling */
+.btn {
+  height: 65px;
+  border: none;
+  border-radius: 15px;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Hover Effect */
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Number Buttons */
+.number {
+  background: #334155;
+  color: #ffffff;
+}
+
+.number:hover {
+  background: #475569;
+}
+
+/* Operator Buttons */
+.operator {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.operator:hover {
+  background: #1d4ed8;
+}
+
+/* Clear Button */
+.clear {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.clear:hover {
+  background: #dc2626;
+}
+
+/* Delete Button */
+.delete {
+  background: #64748b;
+  color: #ffffff;
+}
+
+.delete:hover {
+  background: #475569;
+}
+
+/* Equals Button */
+.equal {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.equal:hover {
+  background: #15803d;
+}
+
+/* Zero Button */
+.zero {
+  grid-column: span 2;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .calculator {
+    padding: 18px;
+  }
+
+  .btn {
+    height: 58px;
+    font-size: 18px;
+  }
+
+  .current-operand {
+    font-size: 28px;
+  }
+}
