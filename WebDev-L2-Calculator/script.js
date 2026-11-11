@@ -6,6 +6,7 @@ const currentOperandElement = document.getElementById("currentOperand");
 let currentOperand = "0";
 let previousOperand = "";
 let operator = null;
+let currentOperandEntered = false;
 
 // Update Display
 function updateDisplay() {
@@ -20,6 +21,8 @@ function appendNumber(number) {
   if (currentOperand === "Error") {
     clearCalculator();
   }
+
+  currentOperandEntered = true;
 
   if (currentOperand === "0") {
     currentOperand = number;
@@ -36,6 +39,8 @@ function appendDecimal() {
     clearCalculator();
   }
 
+  currentOperandEntered = true;
+
   if (!currentOperand.includes(".")) {
     currentOperand += ".";
   }
@@ -48,6 +53,7 @@ function clearCalculator() {
   currentOperand = "0";
   previousOperand = "";
   operator = null;
+  currentOperandEntered = false;
 
   updateDisplay();
 }
@@ -73,20 +79,39 @@ function deleteNumber() {
 function chooseOperator(selectedOperator) {
   if (currentOperand === "Error") return;
 
+  if (operator === null && !currentOperandEntered) {
+    return;
+  }
+
+  if (operator !== null && !currentOperandEntered) {
+    operator = selectedOperator;
+    updateDisplay();
+    return;
+  }
+
   if (operator !== null) {
     calculate();
   }
 
+  if (currentOperand === "Error") return;
+
   previousOperand = currentOperand;
   currentOperand = "0";
   operator = selectedOperator;
+  currentOperandEntered = false;
 
   updateDisplay();
 }
 
 // Calculate Result
 function calculate() {
-  if (operator === null || currentOperand === "Error") return;
+  if (
+    operator === null ||
+    previousOperand === "" ||
+    currentOperand === "Error"
+  ) {
+    return;
+  }
 
   const firstNumber = parseFloat(previousOperand);
   const secondNumber = parseFloat(currentOperand);
@@ -111,6 +136,7 @@ function calculate() {
         currentOperand = "Error";
         previousOperand = "";
         operator = null;
+        currentOperandEntered = false;
         updateDisplay();
         return;
       }
@@ -123,6 +149,7 @@ function calculate() {
         currentOperand = "Error";
         previousOperand = "";
         operator = null;
+        currentOperandEntered = false;
         updateDisplay();
         return;
       }
@@ -138,6 +165,7 @@ function calculate() {
 
   previousOperand = "";
   operator = null;
+  currentOperandEntered = true;
 
   updateDisplay();
 }
