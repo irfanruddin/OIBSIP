@@ -2,6 +2,7 @@
 
 A responsive tribute page dedicated to Dr. A.P.J. Abdul Kalam, India's
 scientist, teacher, and former President.
+Live: https://irfanruddin.github.io/OIBSIP/tribute-page/
 
 ## Features
 
