@@ -1,10 +1,11 @@
-name: Deploy Calculator to GitHub Pages
+name: Deploy OIBSIP Projects to GitHub Pages
 
 on:
   push:
     branches: ["main"]
     paths:
       - "WebDev-L2-Calculator/**"
+      - "WebDev-L2-TributePage/**"
       - ".github/workflows/static.yml"
   workflow_dispatch:
 
@@ -28,10 +29,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Upload calculator files
-        uses: actions/upload-pages-artifact@v3
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare website files
+        run: |
+          mkdir -p public/tribute-page
+
+          cp -R WebDev-L2-Calculator/. public/
+
+          cp -R WebDev-L2-TributePage/. public/tribute-page/
+
+      - name: Upload website files
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: WebDev-L2-Calculator
+          path: public
 
       - name: Deploy to GitHub Pages
         id: deployment
